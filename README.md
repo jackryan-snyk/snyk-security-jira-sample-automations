@@ -5,7 +5,7 @@ This repo contains sample automation to be used in conjunction with the [Snyk Se
 [Jira Automation Info](https://www.atlassian.com/software/jira/features/automation)
 
 
-[Jira Smart Values](https://support.atlassian.com/cloud-automation/docs/jira-smart-values-security/)
+[Jira Smart Values Security](https://support.atlassian.com/cloud-automation/docs/jira-smart-values-security/)
 
 [Jira Smart Values Text Fields](https://support.atlassian.com/cloud-automation/docs/jira-smart-values-text-fields/)
 
