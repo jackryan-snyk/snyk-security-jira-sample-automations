@@ -1,0 +1,92 @@
+{
+    "cloud": true,
+    "rules": [
+        {
+            "id": 19764344,
+            "clientKey": "c60a22a2-0d5a-3f99-9869-7fc254413a97",
+            "name": "Auto-Close Issues Resolved",
+            "state": "ENABLED",
+            "description": "",
+            "authorAccountId": "62d9850287656f8eda055a1a",
+            "actor": {
+                "type": "ACCOUNT_ID",
+                "value": "557058:f58131cb-b67d-43c7-b30d-6b58d40bd077"
+            },
+            "created": 1717507511626,
+            "updated": 1718126388249,
+            "trigger": {
+                "id": "468086321",
+                "component": "TRIGGER",
+                "parentId": null,
+                "conditionParentId": null,
+                "schemaVersion": 1,
+                "type": "jira.jql.scheduled",
+                "value": {
+                    "schedule": {
+                        "cronExpression": "",
+                        "method": "BASIC",
+                        "rate": 0,
+                        "rateInterval": 86400,
+                        "rRule": "BEGIN:VEVENT\nDTSTART;TZID=America/New_York:20240604T092618\nRRULE:FREQ=MINUTELY;INTERVAL=5;BYSECOND=0\nEND:VEVENT\n"
+                    },
+                    "jql": "status   != Done AND vulnerability[status] = CLOSED",
+                    "executionMode": "jql",
+                    "onlyUpdatedIssues": true
+                },
+                "children": [],
+                "conditions": [],
+                "connectionId": null
+            },
+            "components": [
+                {
+                    "id": "468086322",
+                    "component": "ACTION",
+                    "parentId": null,
+                    "conditionParentId": null,
+                    "schemaVersion": 10,
+                    "type": "jira.issue.transition",
+                    "value": {
+                        "operations": [],
+                        "advancedFields": null,
+                        "sendNotifications": true,
+                        "destinationStatus": {
+                            "type": "NAME",
+                            "value": "Done"
+                        },
+                        "transitionMatch": ""
+                    },
+                    "children": [],
+                    "conditions": [],
+                    "connectionId": null
+                }
+            ],
+            "canOtherRuleTrigger": false,
+            "notifyOnError": "FIRSTERROR",
+            "projects": [],
+            "labels": [],
+            "tags": [
+                {
+                    "id": 65672860,
+                    "tagType": "IS_RULE_UPDATED",
+                    "tagValue": "true"
+                }
+            ],
+            "ruleScope": {
+                "resources": [
+                    "ari:cloud:jira:e97a572e-676e-4efe-982c-51b974c1a376:project/10009"
+                ]
+            },
+            "ruleHome": {
+                "ruleLifecycleHome": {
+                    "locationARI": "ari:cloud:jira:e97a572e-676e-4efe-982c-51b974c1a376:project/10009"
+                },
+                "ruleBillingHome": {
+                    "locationARI": "ari:cloud:jira-software::site/e97a572e-676e-4efe-982c-51b974c1a376"
+                }
+            },
+            "writeAccessType": "UNRESTRICTED",
+            "collaborators": [],
+            "billingType": "NORMAL"
+        }
+    ]
+}

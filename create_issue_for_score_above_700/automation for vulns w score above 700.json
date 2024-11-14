@@ -1,0 +1,240 @@
+{
+    "cloud": true,
+    "rules": [
+        {
+            "id": 16996843,
+            "clientKey": "c60a22a2-0d5a-3f99-9869-7fc254413a97",
+            "name": "When a C,H,M vulnerability w score > 700 is found → create an issue",
+            "state": "DISABLED",
+            "description": null,
+            "authorAccountId": "62d9850287656f8eda055a1a",
+            "actor": {
+                "type": "ACCOUNT_ID",
+                "value": "557058:f58131cb-b67d-43c7-b30d-6b58d40bd077"
+            },
+            "created": 1702571257191,
+            "updated": 1707185529392,
+            "trigger": {
+                "id": "395163727",
+                "component": "TRIGGER",
+                "parentId": null,
+                "conditionParentId": null,
+                "schemaVersion": -1,
+                "type": "security.vulnerability.event.trigger:created",
+                "value": {
+                    "severities": [
+                        "critical",
+                        "high",
+                        "medium"
+                    ]
+                },
+                "children": [],
+                "conditions": [],
+                "connectionId": null
+            },
+            "components": [
+                {
+                    "id": "395163728",
+                    "component": "ACTION",
+                    "parentId": null,
+                    "conditionParentId": null,
+                    "schemaVersion": 1,
+                    "type": "jira.create.variable",
+                    "value": {
+                        "id": "_customsmartvalue_id_1702580330099",
+                        "name": {
+                            "type": "FREE",
+                            "value": "priorityScore"
+                        },
+                        "type": "SMART",
+                        "query": {
+                            "type": "SMART",
+                            "value": "{{vulnerability.description.text.match(\"Snyk priority score: \\*(\\d+)/\")}}"
+                        },
+                        "lazy": false
+                    },
+                    "children": [],
+                    "conditions": [],
+                    "connectionId": null
+                },
+                {
+                    "id": "395163729",
+                    "component": "CONDITION",
+                    "parentId": null,
+                    "conditionParentId": null,
+                    "schemaVersion": 1,
+                    "type": "jira.condition.container.block",
+                    "value": null,
+                    "children": [
+                        {
+                            "id": "395163730",
+                            "component": "CONDITION_BLOCK",
+                            "parentId": "395163729",
+                            "conditionParentId": null,
+                            "schemaVersion": 1,
+                            "type": "jira.condition.if.block",
+                            "value": {
+                                "conditionMatchType": "ALL"
+                            },
+                            "children": [
+                                {
+                                    "id": "395163732",
+                                    "component": "ACTION",
+                                    "parentId": "395163730",
+                                    "conditionParentId": null,
+                                    "schemaVersion": 10,
+                                    "type": "jira.issue.create",
+                                    "value": {
+                                        "operations": [
+                                            {
+                                                "field": {
+                                                    "type": "ID",
+                                                    "value": "project"
+                                                },
+                                                "fieldType": "project",
+                                                "type": "SET",
+                                                "value": {
+                                                    "type": "ID",
+                                                    "value": "10009"
+                                                }
+                                            },
+                                            {
+                                                "field": {
+                                                    "type": "ID",
+                                                    "value": "issuetype"
+                                                },
+                                                "fieldType": "issuetype",
+                                                "type": "SET",
+                                                "value": {
+                                                    "type": "ID",
+                                                    "value": "10005"
+                                                }
+                                            },
+                                            {
+                                                "field": {
+                                                    "type": "ID",
+                                                    "value": "summary"
+                                                },
+                                                "fieldType": "summary",
+                                                "type": "SET",
+                                                "value": "Fix {{vulnerability.displayName}}"
+                                            },
+                                            {
+                                                "field": {
+                                                    "type": "ID",
+                                                    "value": "description"
+                                                },
+                                                "fieldType": "description",
+                                                "type": "SET",
+                                                "value": "Score: {{priorityScore}}\n\nText: \n\n{{vulnerability.description.text}}"
+                                            },
+                                            {
+                                                "field": {
+                                                    "type": "ID",
+                                                    "value": "labels"
+                                                },
+                                                "fieldType": "labels",
+                                                "type": "SET",
+                                                "value": [
+                                                    {
+                                                        "type": "NAME",
+                                                        "value": "security-vulnerability"
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "advancedFields": null,
+                                        "sendNotifications": false
+                                    },
+                                    "children": [],
+                                    "conditions": [],
+                                    "connectionId": null
+                                },
+                                {
+                                    "id": "395163733",
+                                    "component": "ACTION",
+                                    "parentId": "395163730",
+                                    "conditionParentId": null,
+                                    "schemaVersion": -1,
+                                    "type": "security.vulnerability.link",
+                                    "value": {
+                                        "issue": {
+                                            "type": "COPY",
+                                            "value": "created"
+                                        }
+                                    },
+                                    "children": [],
+                                    "conditions": [],
+                                    "connectionId": null
+                                }
+                            ],
+                            "conditions": [
+                                {
+                                    "id": "395163731",
+                                    "component": "CONDITION",
+                                    "parentId": null,
+                                    "conditionParentId": "395163730",
+                                    "schemaVersion": 1,
+                                    "type": "jira.comparator.condition",
+                                    "value": {
+                                        "first": "{{priorityScore}}",
+                                        "second": "700",
+                                        "operator": "GREATER_THAN"
+                                    },
+                                    "children": [],
+                                    "conditions": [],
+                                    "connectionId": null
+                                }
+                            ],
+                            "connectionId": null
+                        }
+                    ],
+                    "conditions": [],
+                    "connectionId": null
+                }
+            ],
+            "canOtherRuleTrigger": false,
+            "notifyOnError": "FIRSTERROR",
+            "projects": [],
+            "labels": [],
+            "tags": [
+                {
+                    "id": 56011275,
+                    "tagType": "TEMPLATE_ID",
+                    "tagValue": "security_template_1"
+                },
+                {
+                    "id": 56011272,
+                    "tagType": "CREATION_TYPE",
+                    "tagValue": "USER"
+                },
+                {
+                    "id": 56011274,
+                    "tagType": "IS_RULE_UPDATED",
+                    "tagValue": "true"
+                },
+                {
+                    "id": 56011273,
+                    "tagType": "SAMPLE_RULE",
+                    "tagValue": "security"
+                }
+            ],
+            "ruleScope": {
+                "resources": [
+                    "ari:cloud:jira:e97a572e-676e-4efe-982c-51b974c1a376:project/10009"
+                ]
+            },
+            "ruleHome": {
+                "ruleLifecycleHome": {
+                    "locationARI": "ari:cloud:jira:e97a572e-676e-4efe-982c-51b974c1a376:project/10009"
+                },
+                "ruleBillingHome": {
+                    "locationARI": "ari:cloud:jira-software::site/e97a572e-676e-4efe-982c-51b974c1a376"
+                }
+            },
+            "writeAccessType": "UNRESTRICTED",
+            "collaborators": [],
+            "billingType": "NORMAL"
+        }
+    ]
+}

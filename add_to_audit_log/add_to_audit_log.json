@@ -1,0 +1,142 @@
+{
+    "cloud": true,
+    "rules": [
+        {
+            "id": 20745332,
+            "clientKey": "c60a22a2-0d5a-3f99-9869-7fc254413a97",
+            "name": "Log Vulnerability Info",
+            "state": "ENABLED",
+            "description": null,
+            "authorAccountId": "62d9850287656f8eda055a1a",
+            "actor": {
+                "type": "ACCOUNT_ID",
+                "value": "557058:f58131cb-b67d-43c7-b30d-6b58d40bd077"
+            },
+            "created": 1722012663643,
+            "updated": 1722012682744,
+            "trigger": {
+                "id": "495779827",
+                "component": "TRIGGER",
+                "parentId": null,
+                "conditionParentId": null,
+                "schemaVersion": -1,
+                "type": "security.vulnerability.event.trigger:created",
+                "value": {
+                    "severities": [
+                        "critical",
+                        "high",
+                        "medium"
+                    ]
+                },
+                "children": [],
+                "conditions": [],
+                "connectionId": null
+            },
+            "components": [
+                {
+                    "id": "495779828",
+                    "component": "ACTION",
+                    "parentId": null,
+                    "conditionParentId": null,
+                    "schemaVersion": 1,
+                    "type": "codebarrel.action.log",
+                    "value": "{{vulnerability.description.text}}",
+                    "children": [],
+                    "conditions": [],
+                    "connectionId": null
+                },
+                {
+                    "id": "495779829",
+                    "component": "ACTION",
+                    "parentId": null,
+                    "conditionParentId": null,
+                    "schemaVersion": 1,
+                    "type": "codebarrel.action.log",
+                    "value": "{{vulnerability.additionalInfoURL}}",
+                    "children": [],
+                    "conditions": [],
+                    "connectionId": null
+                },
+                {
+                    "id": "495779830",
+                    "component": "ACTION",
+                    "parentId": null,
+                    "conditionParentId": null,
+                    "schemaVersion": 1,
+                    "type": "jira.create.variable",
+                    "value": {
+                        "id": "_customsmartvalue_id_1722012571371",
+                        "name": {
+                            "type": "FREE",
+                            "value": "priorityScore"
+                        },
+                        "type": "SMART",
+                        "query": {
+                            "type": "SMART",
+                            "value": "{{vulnerability.description.text.match(\"Snyk priority score: \\*(\\d+)/\")}}"
+                        },
+                        "lazy": false
+                    },
+                    "children": [],
+                    "conditions": [],
+                    "connectionId": null
+                },
+                {
+                    "id": "495779831",
+                    "component": "ACTION",
+                    "parentId": null,
+                    "conditionParentId": null,
+                    "schemaVersion": 1,
+                    "type": "codebarrel.action.log",
+                    "value": "Score is {{priorityScore}}",
+                    "children": [],
+                    "conditions": [],
+                    "connectionId": null
+                }
+            ],
+            "canOtherRuleTrigger": false,
+            "notifyOnError": "FIRSTERROR",
+            "projects": [],
+            "labels": [],
+            "tags": [
+                {
+                    "id": 69331536,
+                    "tagType": "IS_RULE_UPDATED",
+                    "tagValue": "true"
+                },
+                {
+                    "id": 69331537,
+                    "tagType": "TEMPLATE_ID",
+                    "tagValue": "security_template_1"
+                },
+                {
+                    "id": 69331535,
+                    "tagType": "SAMPLE_RULE",
+                    "tagValue": "security"
+                },
+                {
+                    "id": 69331534,
+                    "tagType": "CREATION_TYPE",
+                    "tagValue": "USER"
+                }
+            ],
+            "ruleScope": {
+                "resources": [
+                    "ari:cloud:jira:e97a572e-676e-4efe-982c-51b974c1a376:project/10009"
+                ]
+            },
+            "ruleHome": {
+                "ruleLifecycleHome": {
+                    "locationARI": "ari:cloud:jira:e97a572e-676e-4efe-982c-51b974c1a376:project/10009"
+                },
+                "ruleBillingHome": {
+                    "locationARI": "ari:cloud:jira-software::site/e97a572e-676e-4efe-982c-51b974c1a376"
+                }
+            },
+            "writeAccessType": "UNRESTRICTED",
+            "collaborators": [],
+            "billingType": "NORMAL",
+            "idUuid": null
+        }
+    ]
+}
