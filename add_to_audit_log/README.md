@@ -9,4 +9,5 @@
 5. AND Add priorityScore to the audit log
 
 
+## Screenshot
 ![Screenshot](Log_Vulnerability_info.png)
