@@ -15,3 +15,4 @@ This repo contains sample automation to be used in conjunction with the [Snyk Se
 
 
 ### Jira Automation example - SCA. This is the information developers get in Jira. There is more information via /issues endpoint
+![](./screenshots/SCA-Jira-Example.png)
