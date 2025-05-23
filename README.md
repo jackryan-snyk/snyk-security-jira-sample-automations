@@ -16,3 +16,11 @@ This repo contains sample automation to be used in conjunction with the [Snyk Se
 
 ### Jira Automation example - SCA. This is the information developers get in Jira. There is more information via /issues endpoint
 ![](./screenshots/SCA-Jira-Example.png)
+
+
+### Comparison of the 2 Jira Integrations
+![](./screenshots/Comparison-Chart.png)
+
+
+### Issues
+* [Smart value for webResponse is not parsing correctly JSON when vnd.api+json response headers is received]([https://www.example.com/page1](https://jira.atlassian.com/browse/AUTO-1293)
