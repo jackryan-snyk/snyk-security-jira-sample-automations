@@ -24,3 +24,7 @@ This repo contains sample automation to be used in conjunction with the [Snyk Se
 
 ### Issues
 * [Smart value for webResponse is not parsing correctly JSON when vnd.api+json response headers is received](https://jira.atlassian.com/browse/AUTO-1293)
+
+
+### Additional Resources
+* [jira-tickets-for-new-vulns](https://github.com/snyk-tech-services/jira-tickets-for-new-vulns)
