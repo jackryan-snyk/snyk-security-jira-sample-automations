@@ -10,3 +10,8 @@ This repo contains sample automation to be used in conjunction with the [Snyk Se
 [Jira Smart Values Text Fields](https://support.atlassian.com/cloud-automation/docs/jira-smart-values-text-fields/)
 
 [Snyk REST APIs](https://apidocs.snyk.io/?version=2024-10-15)
+
+
+
+
+### Jira Automation example - SCA. This is the information developers get in Jira. There is more information via /issues endpoint
